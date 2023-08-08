@@ -6,24 +6,40 @@ if(isset($_POST["add"])){
 		$name = addslashes($_POST["name"]);
 		$price = addslashes($_POST["price"]);
 		$description = htmlspecialchars($_POST["description"]);
-		$colors = implode(",", $_POST["colors"]);
+		$colors = "";
+		
+		if(isset($_POST["colors"]) && is_array($_POST["colors"])){
+			$colors = implode(",", $_POST["colors"]);
+		}
 		
 		$filename = "";
 		
 		if(is_uploaded_file($_FILES["picture"]["tmp_name"]) && file_exists($_FILES["picture"]["tmp_name"])){
 			$filename = uniqid() . "-" . $_FILES["picture"]["name"];
 			
-			move_uploaded_file($_FILES["picture"]["tmp_name"], __DIR__ . "/uploads/" . $filename);
+			$ext = pathinfo($_FILES["picture"]["name"])["extension"];
+			
+			$acceptExt = ["jpg", "png", "gif", "jpeg", "pdf", "docx", "doc"];
+			
+			if(in_array($ext, $acceptExt)){
+				move_uploaded_file($_FILES["picture"]["tmp_name"], __DIR__ . "/uploads/" . $filename);
+			}else{
+				$error = "Only support files: " . implode(", ", $acceptExt);
+			}
 		}
 		
-		$date = date("Y-m-d");
+		$q = false;
 		
-		$q = mysqli_query($conn, "INSERT INTO items(i_name, i_price, i_description, i_picture, i_date, i_colors) VALUES('{$name}', '{$price}', '{$description}',  '{$filename}', '{$date}', '{$colors}')");
+		if(!isset($error)){
+			$date = date("Y-m-d");
 		
-		if($q){
-			header("Location: index.php");
-		}else{
-			$error = "Fail inserting your item record. Please try again.";
+			$q = mysqli_query($conn, "INSERT INTO items(i_name, i_price, i_description, i_picture, i_date, i_colors) VALUES('{$name}', '{$price}', '{$description}',  '{$filename}', '{$date}', '{$colors}')");
+			
+			if($q){
+				header("Location: index.php");
+			}else{
+				$error = "Fail inserting your item record. Please try again.";
+			}
 		}
 	}else{
 		$error = "Name is required.";
