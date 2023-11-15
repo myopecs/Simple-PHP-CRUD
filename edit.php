@@ -23,6 +23,12 @@ if(isset($_POST["edit"])){
 				move_uploaded_file($_FILES["picture"]["tmp_name"], __DIR__ . "/uploads/" . $filename);
 			}
 			
+			if(is_uploaded_file($_FILES["audio"]["tmp_name"]) && file_exists($_FILES["audio"]["tmp_name"])){
+				$filename = uniqid() . "-" . $_FILES["audio"]["name"];
+				
+				move_uploaded_file($_FILES["audio"]["tmp_name"], __DIR__ . "/uploads/" . $filename);
+			}
+			
 			$date = date("Y-m-d");
 			
 			$q = mysqli_query($conn, "UPDATE items SET i_name = '{$name}', i_price = '{$price}', i_description = '{$description}', i_picture = '{$filename}', i_date = '{$date}', i_colors = '{$colors}' WHERE i_id = '{$id}'");
@@ -112,13 +118,17 @@ if(isset($_POST["edit"])){
 								
 								Picture:
 								<img class="img img-fluid" src="./uploads/<?= $r["i_picture"] ?>" />
+								<hr />
 								
+								<input type="file" name="picture" /><br /><br />	
+								
+								Audio:								
 								<audio controls>
 									<source src="./uploads/<?= $r["i_picture"] ?>" />
 								</audio>
 								<hr />
 								
-								<input type="file" name="picture" /><br /><br />	
+								<input type="file" name="audio" /><br /><br />
 								
 								<?PHP
 									$colors = explode(",", $r["i_colors"]);

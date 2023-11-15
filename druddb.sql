@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2023 at 04:27 PM
+-- Generation Time: Nov 15, 2023 at 04:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,22 +35,25 @@ CREATE TABLE `items` (
   `i_picture` varchar(255) NOT NULL,
   `i_price` double NOT NULL,
   `i_colors` varchar(100) NOT NULL,
-  `i_url` varchar(1000) NOT NULL
+  `i_url` varchar(1000) NOT NULL,
+  `i_audio` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`i_id`, `i_name`, `i_description`, `i_date`, `i_picture`, `i_price`, `i_colors`, `i_url`) VALUES
-(2, 'item asdasdadasd', 'item asdasdadasd', '2023-08-08', '64d23d21b31ab-Picture8.png', 1000, 'red,blue,yellow', 'https://ww4.fmovies.co/film/meg-2-the-trench-1630855563/'),
-(3, 'Item 3', 'Item 3', '2023-08-08', '64d23d2ddd9ea-Picture8.png', 10000, 'blue,yellow,green', 'x.mp4'),
-(5, 'Item 5', 'Item 5', '2023-08-08', '64d23d39867bc-Picture8.png', 1000, 'red,blue,yellow', ''),
-(6, 'item 6', '', '2023-08-08', '64d23e0a7dc8b-Picture8.png', 123, '', ''),
-(7, 'item 7', '', '2023-08-08', '64d23e1258afc-Picture8.png', 0, '', ''),
-(8, 'item 8', '', '2023-08-08', '64d23e19a44f9-Picture8.png', 0, '', ''),
-(9, 'item 9', '', '2023-08-08', '64d23e2287d6c-Picture8.png', 0, '', ''),
-(10, 'item 10', '', '2023-08-08', '64d23e30d6ba8-Picture8.png', 0, '', '');
+INSERT INTO `items` (`i_id`, `i_name`, `i_description`, `i_date`, `i_picture`, `i_price`, `i_colors`, `i_url`, `i_audio`) VALUES
+(2, 'item asdasdadasd', 'item asdasdadasd', '2023-08-08', '64d23d21b31ab-Picture8.png', 1000, 'red,blue,yellow', 'https://ww4.fmovies.co/film/meg-2-the-trench-1630855563/', ''),
+(3, 'Item 3', 'Item 3', '2023-08-08', '64d23d2ddd9ea-Picture8.png', 10000, 'blue,yellow,green', 'x.mp4', ''),
+(5, 'Item 5', 'Item 5', '2023-08-08', '64d23d39867bc-Picture8.png', 1000, 'red,blue,yellow', '', ''),
+(6, 'item 6', '', '2023-08-08', '64d23e0a7dc8b-Picture8.png', 123, '', '', ''),
+(7, 'item 7', '', '2023-08-08', '64d23e1258afc-Picture8.png', 0, '', '', ''),
+(8, 'item 8', '', '2023-08-08', '64d23e19a44f9-Picture8.png', 0, '', '', ''),
+(9, 'item 9', '', '2023-08-08', '64d23e2287d6c-Picture8.png', 0, '', '', ''),
+(10, 'item 10', '', '2023-08-08', '64d23e30d6ba8-Picture8.png', 0, '', '', ''),
+(11, 'test audio', '', '2023-11-15', '6554e79159e94-alipbataa-piano.mp3', 0, '', '', ''),
+(12, 'asdasdasdasd', '', '2023-11-15', '6554e8dba64f3-alipbataa-piano.mp3', 234234, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -96,7 +99,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `i_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `i_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

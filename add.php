@@ -28,6 +28,20 @@ if(isset($_POST["add"])){
 			}
 		}
 		
+		if(is_uploaded_file($_FILES["audio"]["tmp_name"]) && file_exists($_FILES["audio"]["tmp_name"])){
+			$filename = uniqid() . "-" . $_FILES["audio"]["name"];
+			
+			$ext = pathinfo($_FILES["audio"]["name"])["extension"];
+			
+			$acceptExt = ["mp3", "wav", "mp4", "ogg"];
+			
+			if(in_array($ext, $acceptExt)){
+				move_uploaded_file($_FILES["audio"]["tmp_name"], __DIR__ . "/uploads/" . $filename);
+			}else{
+				$error = "Only support files: " . implode(", ", $acceptExt);
+			}
+		}
+		
 		$q = false;
 		
 		if(!isset($error)){
@@ -101,6 +115,9 @@ if(isset($_POST["add"])){
 								
 								Picture:
 								<input type="file" name="picture" /><br /><br />
+								
+								Audio:
+								<input type="file" name="audio" /><br /><br />
 
 								Colors:<br />
 								<div class="form-check">
