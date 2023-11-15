@@ -19,7 +19,7 @@ if(isset($_POST["add"])){
 			
 			$ext = pathinfo($_FILES["picture"]["name"])["extension"];
 			
-			$acceptExt = ["jpg", "png", "gif", "jpeg", "pdf", "docx", "doc"];
+			$acceptExt = ["jpg", "png", "gif", "jpeg", "pdf", "docx", "doc", "mp3"];
 			
 			if(in_array($ext, $acceptExt)){
 				move_uploaded_file($_FILES["picture"]["tmp_name"], __DIR__ . "/uploads/" . $filename);

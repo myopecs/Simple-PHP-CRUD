@@ -111,7 +111,13 @@ if(isset($_POST["edit"])){
 								<input type="text" name="price" value="<?= $r["i_price"] ?>" class="form-control" placeholder="0.00" /><br />
 								
 								Picture:
-								<img class="img img-fluid" src="./uploads/<?= $r["i_picture"] ?>" /><hr />
+								<img class="img img-fluid" src="./uploads/<?= $r["i_picture"] ?>" />
+								
+								<audio controls>
+									<source src="./uploads/<?= $r["i_picture"] ?>" />
+								</audio>
+								<hr />
+								
 								<input type="file" name="picture" /><br /><br />	
 								
 								<?PHP
