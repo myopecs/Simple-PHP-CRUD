@@ -2,7 +2,6 @@
 $conn = mysqli_connect("127.0.0.1", "root", "", "druddb");
 
 session_start();
-
 if(!isset($_SESSION["user_login"])){
 	die("You are not allow to access this page.");
 }
